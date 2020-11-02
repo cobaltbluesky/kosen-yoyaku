@@ -1,5 +1,18 @@
 import React,{useState} from 'react';
+import Button from '@material-ui/core/Button';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import {makeStyles} from '@material-ui/core/styles'
+
 const Form=(props)=>{
+  //CSS
+  const useStyles=makeStyles((theme)=>({
+    button:{
+      margin:theme.spacing(1),
+    },
+  }));
+  const classes=useStyles();
   //state
   const [value,setValue]=useState(1);
   const [name,setName]=useState("");
@@ -21,20 +34,30 @@ const Form=(props)=>{
   return (
     <div>
       代表者氏名を入力してください:
-      <textarea
+      <TextareaAutosize
         value={name}
         onChange={handleNameChange}/>
-      <select
+      <br/>
+      人数を入力してください:
+      <Select
         value={value}
         onChange={handleChange}
       >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>人
-      <button type="submit" onClick={handleSubmit}>送信</button>
+        <MenuItem value={1}>1</MenuItem>
+        <MenuItem value={2}>2</MenuItem>
+        <MenuItem value={3}>3</MenuItem>
+        <MenuItem value={4}>4</MenuItem>
+        <MenuItem value={5}>5</MenuItem>
+      </Select>人
+      <br/>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSubmit}
+        className={classes.button}
+      >
+        送信
+      </Button>
     </div>
   );
 }

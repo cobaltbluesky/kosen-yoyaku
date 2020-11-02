@@ -1,5 +1,5 @@
 import React from 'react';
-const Thanks=()=>{
+const Thanks=(props)=>{
   return(
     <h1>ありがとうございました。</h1>
   )

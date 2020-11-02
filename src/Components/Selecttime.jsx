@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import firebase from '../Firebase';
+import Button from '@material-ui/core/Button';
+
 const Selecttime=(props)=>{
   const name=props.location.state.Representativename;
   const value=props.location.state.NumberofPeople;
@@ -43,8 +45,22 @@ const Selecttime=(props)=>{
   return(
     <div>
       <h1>お好きな時間をお選びください</h1>
-      <input type="button" value={First} onClick={handleFirstClick}/>
-      <input type="button" value={Second} onClick={handleSecondClick}/>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleFirstClick}
+        value={First}
+      >
+        {First}
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSecondClick}
+        value={Second}
+      >
+        {Second}
+      </Button>
     </div>
   )
 }
