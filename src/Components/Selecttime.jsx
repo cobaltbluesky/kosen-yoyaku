@@ -18,25 +18,28 @@ const Selecttime=(props)=>{
         if(doc.data().NumberofPeople+value<=15&&firstflag===0){
           setFirst(doc.id);
           firstflag+=1;
-          setNumberofFirstPeople(NumberofFirstPeople+value);
+          setNumberofFirstPeople(doc.data().NumberofPeople+value);
+
+          console.log(doc.data().NumberofPeople);
         }
         else if(doc.data().NumberofPeople+value<=15&&secondflag===0){
           setSecond(doc.id);
           secondflag+=1;
-          setNumberofSecondPeople(NumberofSecondPeople+value);
+          setNumberofSecondPeople(parseInt(doc.data().NumberofPeople)+value);
         }
       });
     });
   },[])
   const handleFirstClick=()=>{
-    db.collection("timetable").doc(First).set({
-      NumberofPeople:parseInt(NumberofFirstPeople),
+    console.log(NumberofFirstPeople);
+    db.collection("timetable").doc(First).update({
+      NumberofPeople:NumberofFirstPeople,
       [name]:parseInt(value)
     });
     props.history.push('/Thanks');
   }
   const handleSecondClick=()=>{
-    db.collection("timetable").doc(Second).set({
+    db.collection("timetable").doc(Second).update({
       NumberofPeople:parseInt(NumberofSecondPeople),
       [name]:parseInt(value)
     });
